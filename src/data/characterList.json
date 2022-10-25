@@ -1,0 +1,66 @@
+{
+    "charlist" : [
+        {
+            "name" : "전사",
+            "images" : "null",
+            "status_hitPoint" : 15,
+            "status_strength" : 20,
+            "status_mental" : 5,
+            "status_wisdom" : 5,
+            "status_agility" : 10,
+            "status_charisma" : 5,
+            "specificity" : [0, 1]
+        },
+        {
+            "name" : "마법사",
+            "images" : "null",
+            "status_hitPoint" : 5,
+            "status_strength" : 5,
+            "status_mental" : 15,
+            "status_wisdom" : 15,
+            "status_agility" : 5,
+            "status_charisma" : 5,
+            "specificity" : [2, 3]
+        },
+        {
+            "name" : "사냥꾼",
+            "images" : "null",
+            "status_hitPoint" : 10,
+            "status_strength" : 10,
+            "status_mental" : 5,
+            "status_wisdom" : 5,
+            "status_agility" : 15,
+            "status_charisma" : 5,
+            "specificity" : [4, 5]
+        }
+    ],
+    "char_specificity" : [
+        { 
+            "name" : "타고난 장사", 
+            "explaation" : "힘(strength) 스텟 당 5의 추가체력을 얻습니다."
+        },
+        {
+            "name" : "강인함",
+            "explaation" : "부정적 상태효과의 지속시간이 20% 감소합니다."
+        },
+        {
+            "name" : "주문 보호막",
+            "explaation" : "정신(mentel) 스텟 당 5의 보호막을 얻습니다."
+        },
+        {
+            "name" : "정신적인 힘",
+            "explaation" : "지혜(wisdom) 스텟 10마다 주문 피해량이 1 추가로 증가합니다."
+        },
+        {
+            "name" : "기습사격",
+            "explaation" : "선공/회피시에 25%의 확률로 민첩(agility) 스텟 당 2의 피해를 줍니다."
+        },
+        {
+            "name" : "약점포착",
+            "explaation" : "치명타 공격시 50%의 피해가 고정피해가 됩니다."
+        }
+    ],
+    "common_specificity" : [
+        
+    ]
+}
