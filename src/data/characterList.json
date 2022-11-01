@@ -2,7 +2,7 @@
     "charlist" : [
         {
             "name" : "전사",
-            "images" : "null",
+            "images" : "img/character/warrior_image.jpg",
             "status_hitPoint" : 15,
             "status_strength" : 20,
             "status_mental" : 5,
@@ -13,7 +13,7 @@
         },
         {
             "name" : "마법사",
-            "images" : "null",
+            "images" : "img/character/wizard_image.jpg",
             "status_hitPoint" : 5,
             "status_strength" : 5,
             "status_mental" : 15,
@@ -24,7 +24,7 @@
         },
         {
             "name" : "사냥꾼",
-            "images" : "null",
+            "images" : "img/character/hunter_image.jpg",
             "status_hitPoint" : 10,
             "status_strength" : 10,
             "status_mental" : 5,
@@ -61,6 +61,23 @@
         }
     ],
     "common_specificity" : [
-        
+        { 
+            "name" : "운동체질", 
+            "explaation" : "힘(strength) 스텟이 3 상승합니다."
+        },
+        { 
+            "name" : "", 
+            "explaation" : ""
+        }
+    ],
+    "skill" : [
+        {
+            "name" : "강타",
+            "type" : 0,
+            "explaation" : "적에게 damage(+'additional_factor*status_impact')의 피해량을 줍니다.",
+            "damage" : 20,
+            "additional_factor" : 1,
+            "status_impact" : "status_strength"
+        }
     ]
 }
