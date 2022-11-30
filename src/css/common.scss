@@ -1,0 +1,13 @@
+
+.common-table {
+    border: 1px solid black;
+    th { text-align: center; }
+    th, td { border : 1px solid; }
+    thead {
+        th { font-weight: 800; font-size: 20px; background-color: darkolivegreen; color:#fff;}
+    }
+    tbody {
+        th { font-weight: 600; font-size: 16px; background-color: burlywood; }
+        td { font-weight: 400; font-size: 14px; background-color: beige;}
+    }
+}

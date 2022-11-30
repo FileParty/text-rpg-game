@@ -12,15 +12,27 @@
         font-size: 40px;
         font-weight: 700;
         background-color: rgb(141, 201, 230);
+        
         .login-div {
             display:flex;
             align-items : center;
-            width:160px;
-            height: 85px;
+            justify-items: center;
+            width: 180px;
+            height: 90px;
             background-color: rgb(119, 55, 25);
             color: whitesmoke;
-            font-size: 13px;
+            
+            text-align: center;
+            .suc_login_text {
+                font-size: 17px;
+                width:100%;
+                font-weight: 600;
+                span {
+                    font-size: 16px;
+                }
+            }
             .non_login_text {
+                font-size: 14px;
                 width:100%;
                 text-align: center;
             }

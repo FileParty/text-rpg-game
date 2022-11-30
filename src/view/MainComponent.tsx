@@ -1,10 +1,9 @@
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import { movePage } from '../js/common';
 import { useNavigate } from 'react-router-dom';
 
 
-function Main() {
+function MainComponent() {
     const navigate = useNavigate();
     return (
         <Container>
@@ -23,4 +22,4 @@ function Main() {
     )
 }
 
-export default Main;
+export default MainComponent;

@@ -2,36 +2,40 @@
     "charlist" : [
         {
             "name" : "전사",
+            "explation" : "체력과 힘이 높습니다.",
             "images" : "img/character/warrior_image.jpg",
-            "status_hitPoint" : 15,
-            "status_strength" : 20,
-            "status_mental" : 5,
-            "status_wisdom" : 5,
-            "status_agility" : 10,
-            "status_charisma" : 5,
-            "specificity" : [0, 1]
+            "maximumHitPoint" : 200,
+            "levelUpHitPoint" : 75,
+            "resourceName" : "내성치",
+            "maximumResource" : 25,
+            "levelUpResource" : 5,
+            "strength" : 20,
+            "additionalStrength" : 3,
+            "mental" : 5,
+            "additionalMental" : 1,
+            "agility" : 10,
+            "additionalAgility" : 2,
+            "default_specificity" : ["노련한 투사", "불신자"]
         },
         {
             "name" : "마법사",
+            "explation" : "체력이 낮아 기술을 잘 활용해야 합니다.",
             "images" : "img/character/wizard_image.jpg",
-            "status_hitPoint" : 5,
-            "status_strength" : 5,
-            "status_mental" : 15,
-            "status_wisdom" : 15,
-            "status_agility" : 5,
-            "status_charisma" : 5,
-            "specificity" : [2, 3]
+            "strength" : 5,
+            "mental" : 20,
+            "agility" : 10,
+            "resourceName" : "마력",
+            "default_specificity" : [2, 3]
         },
         {
             "name" : "사냥꾼",
+            "explation" : "상대보다 먼저 행동해서 플레이를 예측해야 합니다.",
             "images" : "img/character/hunter_image.jpg",
-            "status_hitPoint" : 10,
-            "status_strength" : 10,
-            "status_mental" : 5,
-            "status_wisdom" : 5,
-            "status_agility" : 15,
-            "status_charisma" : 5,
-            "specificity" : [4, 5]
+            "strength" : 10,
+            "mental" : 10,
+            "agility" : 15,
+            "resourceName" : "정신력",
+            "default_specificity" : [4, 5]
         }
     ],
     "char_specificity" : [
