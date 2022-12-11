@@ -12,9 +12,9 @@ function MainComponent() {
                     <h1>메인화면</h1>
                     <div className="bottom_div_btn">
                         <Button variant="primary" onClick={()=>{navigate('/character')}}>게임 시작</Button> <br/><br/>
-                        <Button variant="success">게임 설명</Button>
+                        <Button variant="success" onClick={()=>{navigate('/description')}}>게임 설명</Button>
                         &nbsp;&nbsp;
-                        <Button variant="info">개발자 정보</Button>
+                        <Button variant="info" onClick={()=>{navigate('/developer')}}>개발자 정보</Button>
                     </div>
                 </div>
             </div>

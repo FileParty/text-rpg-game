@@ -11,7 +11,17 @@ import { useDispatch } from "react-redux";
 import { create_loginState } from "../js/loginState";
 
 
-function CharacterChoiceComponent() {
+
+
+function CharacterChoiceComponent(prop:any) {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const insertCharStat = (char:Character) => {
+        dispatch(create_loginState(char));
+        prop.changeLoginState();
+    }
 
     let [ slideMarginLeft, slideMarginLeftChg ] = useState(0);
 
@@ -20,6 +30,8 @@ function CharacterChoiceComponent() {
     function slideMove(arg:number) {
         slideMarginLeftChg(slideMarginLeft + arg);
     }
+
+    
 
     return (
         <Container>
@@ -42,37 +54,8 @@ function CharacterChoiceComponent() {
                 <div className="char_choice_save_slide" style={{marginLeft:slideMarginLeft}}>
                     { userCharacterList.length > 0
                         ? userCharacterList.map((value, idx)=>{
-                            return <>
-                                <div key={value.character.id} className="char_choide_save_content">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th colSpan={4}>캐릭터 {value.character.id}</th>
-                                            </tr>
-                                            <tr>
-                                                <th>Lv</th>
-                                                <td>{value.character.level}</td>
-                                                <th>직업</th>
-                                                <td>{value.character.name}</td>
-                                            </tr>
-                                            <tr>
-                                                <th colSpan={2}>마지막<br/>플레이</th>
-                                                <td colSpan={2}>{value.lastDate}</td>
-                                            </tr>
-                                            <tr>
-                                                <th colSpan={2} rowSpan={2}>
-                                                    <img src={value.character.images} className="char_choice_img" alt="캐릭터이미지" />
-                                                </th>
-                                                <th>진행</th>
-                                                <td>1 단계</td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan={2}><Button>선택</Button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </>
+                            
+                            return <SaveCharacterCard key={value.id} value={value} navigate={navigate} insertCharStat={insertCharStat} />
                         })
                         : <> <h1 className="char_choice_save_list_null">저장된 캐릭터가 없습니다.</h1> </>
                     }
@@ -83,7 +66,8 @@ function CharacterChoiceComponent() {
             </div>
             <CardGroup>
                 { defaultCharachterList.map((defChar, idx) => {
-                    return <CharacterCard key={idx} characterProps={defChar} />
+                    return <CharacterCard key={defChar.getStringCharacterArg('name')} characterProps={defChar} 
+                        navigate={navigate} insertCharStat={insertCharStat} />
                 })}
             </CardGroup>
         </Container>
@@ -97,15 +81,58 @@ type CharacterProps = {
     characterProps: Character
 }
 
-const CharacterCard: FunctionComponent<CharacterProps> = function({ characterProps }) {
+const SaveCharacterCard: FunctionComponent<any> = function({ value, navigate, insertCharStat }) {
 
-    const storage = localStorage;
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    const insertCharStat = (char:Character) => {
-        dispatch(create_loginState(char));
+    function setSelectCharacter(arg:any) {
+        Swal.fire({
+            title: '캐릭터 선택',
+            text: 'ID : ' + arg.id + ' 를 선택하시겠습니까?',
+            showCancelButton: true,
+            preConfirm: () => {
+                insertCharStat(arg);
+                navigate("/game/town/default");
+            }
+        })
     }
+
+    return <>
+        <div className="char_choide_save_content">
+            <table>
+                <tbody>
+                    <tr>
+                        <th colSpan={4}>ID : {value.character.id}</th>
+                    </tr>
+                    <tr>
+                        <th>Lv</th>
+                        <td>{value.character.level}</td>
+                        <th>직업</th>
+                        <td>{value.character.name}</td>
+                    </tr>
+                    <tr>
+                        <th colSpan={2}>마지막<br/>플레이</th>
+                        <td colSpan={2}>{value.lastDate}</td>
+                    </tr>
+                    <tr>
+                        <th colSpan={2} rowSpan={2}>
+                            <img src={value.character.images} className="char_choice_img" alt="캐릭터이미지" />
+                        </th>
+                        <th>진행</th>
+                        <td>1 단계</td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <Button onClick={()=>{
+                                setSelectCharacter(value.character);
+                            }}>선택</Button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </>
+}
+
+const CharacterCard: FunctionComponent<any> = function({ characterProps, navigate, insertCharStat }) {
 
     const fn_character_select = (CharacterProps:Character) => {
        Swal.fire({
@@ -122,18 +149,21 @@ const CharacterCard: FunctionComponent<CharacterProps> = function({ characterPro
                 } else if(specReg.test(value)) {
                     return 'ID에 공백을 넣을 수 없습니다.';
                 } else if( value.length > 4 ) {
-                    CharacterProps.setStringCharacterArg("id", value);
-                    if( insertCharacterLocalStorage(CharacterProps) ) {
-                        insertCharStat(CharacterProps);
-                        Swal.fire("캐릭터가 생성되었습니다.");
-                        navigate("/game/town");
-                        return '';
-                    } else {
-                        return '이미 존재하는 ID입니다.';
-                    }
+                    return '';
                 }
                 return 'ID는 공백없이 4글자 이상입니다.';
-            }
+            },
+            preConfirm : (value) => {
+                CharacterProps.setStringCharacterArg("id", value);
+                if( insertCharacterLocalStorage(CharacterProps) ) {
+                    insertCharStat(CharacterProps);
+                    Swal.fire("캐릭터가 생성되었습니다.");
+                    navigate("/game/town/default");
+                    return '';
+                } else {
+                    return '이미 존재하는 ID입니다.';
+                }
+            },
         });
     }
 

@@ -12,12 +12,28 @@ interface storageModel {
     character:Character
 }
 
+function getFullDate():string {
+    return new Date().getFullYear() + "-" + new Date().getMonth() + "-" + new Date().getDate();
+}
+
 export function insertCharacterLocalStorage(obj:Character) {
-    if( localStorage.getItem(obj.getStringCharacterArg("id") ) ) {
+    if( localStorage.getItem(obj.getStringCharacterArg("id") ) === undefined ) {
         return false;
     } else {
-        let regDt:string = (new Date().getFullYear + "-" + new Date().getMonth + "-" + new Date().getDate);
+        let regDt:string = getFullDate();
         let storageSaveMap:storageModel = {id:obj.getStringCharacterArg("id"), lastDate:regDt, character:obj};
+        localStorage.setItem(storageSaveMap.id, JSON.stringify(storageSaveMap));
+        return true;
+    }
+}
+
+export function insertCharacterLocalStorageAny(obj:any) {
+    if( localStorage.getItem(obj.id) === undefined ) {
+        return false;
+    } else {
+        console.log("save");
+        let regDt:string = getFullDate();
+        let storageSaveMap:storageModel = {id:obj.id, lastDate:regDt, character:obj};
         localStorage.setItem(storageSaveMap.id, JSON.stringify(storageSaveMap));
         return true;
     }
@@ -33,9 +49,8 @@ export function selectFullLocalStoreage(saveId:string) {
 }
 
 export function selectAllFulllocalStorage() {
-    let localStorageList:Array<any> = new Array;
+    let localStorageList:Array<any> = [];
     for( let i = 0; i < localStorage.length; i++) {
-        console.log(JSON.parse(localStorage.getItem(localStorage.key(i))));
         localStorageList.push( JSON.parse(localStorage.getItem(localStorage.key(i))) );
     }
     return localStorageList;

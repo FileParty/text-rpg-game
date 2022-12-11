@@ -1,0 +1,31 @@
+
+.field_div {
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    width:100%;
+    min-width: 960px;
+    height:100%;
+    min-height: 480px;
+
+    div {
+        border: 1px solid black;
+        margin-top: 15px;
+    }
+
+    .field_info_div {
+        width: 50%;
+        height:160px;
+    }
+
+    .field_log {
+        width: 50%;
+        height: 80px;
+        overflow-y: scroll;
+    }
+
+
+}
